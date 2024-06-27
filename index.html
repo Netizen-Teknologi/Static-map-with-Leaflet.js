@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static Map with Leaflet.js</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    #map {
+      height: 480px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+  var map = L.map('map', {
+    /* dragging: false, */ // Tidak dapat digerakkan
+    /* touchZoom: false, */
+    /* scrollWheelZoom: false */
+  }).setView([-6.193801878274541, 106.89643365351377], 18);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Tambahkan marker ke peta
+  // Buat ikon kustom untuk marker
+var customIcon = L.icon({
+  iconUrl: 'https://avatar.iran.liara.run/public/boy', // Ganti URL sesuai dengan lokasi gambar marker Anda
+  iconSize: [32, 32],  // Tentukan ukuran gambar marker (lebar, tinggi)
+  iconAnchor: [16, 32], // Tentukan titik ancor (anchor point) dari marker
+  popupAnchor: [0, -32] // Tentukan titik popup (jika menggunakan popup) dari marker
+});
+
+// Tambahkan marker ke peta menggunakan ikon kustom dan bindPopup
+var marker = L.marker([-6.193801878274541, 106.89643365351377], { icon: customIcon })
+  .bindPopup('Ini adalah marker kustom dengan popup!') // Tambahkan popup
+  .addTo(map);
+
+
+</script>
+
+</body>
+</html>
